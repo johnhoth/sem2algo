@@ -5,15 +5,7 @@
 using namespace std;
 
 const int INF = 1e9 + 7;
-
-int main() {
-	int n;
-	cin >> n;
-	vector <int> a(n);
-	for (int i=0; i<n; ++i) {
-		cin >> a[i];
-	}
-	
+vector<int> maximum_nonincreasing_subsequence(vector<int> &a) {
 	vector <int> dp(n + 1, -1), p(n+1, -1);
 	dp[0] = INF;
 	int len = 0;
@@ -26,7 +18,6 @@ int main() {
 			} else {
 				right = mid - 1;
 			}
-			// cout << "b " << left << ' ' << right << ' ' << mid << endl;
 		}
 		int newLen = left;
 		p[i] = dp[newLen - 1];
@@ -41,6 +32,19 @@ int main() {
 		res[i] = now;
 		now = p[now];
 	}
+	return res;
+}
+int main() {
+	int n;
+	cin >> n;
+	vector <int> a(n);
+	
+	for (int i=0; i<n; ++i) {
+		cin >> a[i];
+	}
+	
+	vector <int> res = maximum_nonincreasing_subsequence(a);
+	
 	cout << res.size() << endl;
 	for (int i : res) {
 		cout << i + 1 << ' ';
