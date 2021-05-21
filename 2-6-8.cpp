@@ -9,7 +9,9 @@ const int INF = 1e5 + 7;
 
 
 int length_of_longest_common_increasing_subsequence(vector<int> &a, vector<int> &b) {
-	vector <vector <int>> d(n + 1, vector <int> (m + 1, 0));
+	vector <vector <int>> d(n + 1, vector <int> (m + 1, 0))
+	// dp[i][j] - answer for first i elements from a and first j elements from b
+;
 	for (int i = 1; i <= n; ++i) {
 		int ind = 0, best = 0;
 		for (int j = 1; j <= m; ++j) {
