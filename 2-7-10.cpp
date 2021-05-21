@@ -7,7 +7,7 @@ using namespace std;
 
 const int MOD = 999999937;
 
-vector <vector <long long>> multiply_square(vector <vector <long long>> a, vector <vector <long long>> b) {
+vector <vector <long long>> multiply_square(vector<vector<long long>> &a, const vector<vector<long long>> &b) {
 	vector <vector <long long>> res(a);
 
 	for (int i = 0; i < a.size(); ++i) {
@@ -51,8 +51,6 @@ long long solve(long long x) {
 }
 
 int main() {
-
-	// vector <pair <long long, int>> q;
 	long long x = 1;
 	
 	while (x) {
@@ -60,24 +58,7 @@ int main() {
 		if (!x) break;
 
 		cout << solve(x) << endl;
-		// q.push_back(make_pair(x, q.size()));
 	}
-	// q.pop_back();
-
-	// sort(q.begin(), q.end());
-
-	
-	// vector <vector <vector <long long>>> dp(2, a);
-	
-	// vector <int> ans(q.size());
-	/*
-	banned:
-	34, 35, 54, 55
-	*/
-
-	// for (int i = 0; i <= q.size(); ++i) {
-
-	// } 
 
 	return 0;
 }
