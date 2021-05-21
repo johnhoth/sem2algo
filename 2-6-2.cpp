@@ -7,6 +7,8 @@ using namespace std;
 const int INF = 1e9 + 7;
 vector<int> maximum_nonincreasing_subsequence(vector<int> &a) {
 	vector <int> dp(n + 1, -1), p(n+1, -1);
+	// dp[i] - answer to the task for first i elements of a
+	// p[i] - "previous" from which state we came to dp[i]
 	dp[0] = INF;
 	int len = 0;
 	for (int i = 0; i < n; ++i) {
