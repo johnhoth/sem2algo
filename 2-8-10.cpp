@@ -33,7 +33,7 @@ void find_euler_cycle(vector <vector <int>> &g, vector <int> &ans, int start) {
 			
 
 
-int solve() {
+int main() {
 	int n, start;
 	cin >> n >> start;
 	start--;
@@ -45,36 +45,10 @@ int solve() {
 			if (i != j) g[j][i] ^= 1;
 		}
 	}
-	// for (int i = 0; i < n; ++i) {
-	// 	for (int j = 0; j < n; ++j) {
-	// 		// if (i > j) {
-	// 		g[i + n][j + n] = g[i][j];
-	// 			// g[i][j] = 0;
-	// 		// }
-	// 	}
-	// }
-
-	// for (int j = 0; j < g.size(); ++j) {
-	// 	for (int i:g[j]) {
-	// 		cout << i << ' ';
-	// 	}
-	// 	cout << endl;
-	// }
-	// return 0;
 
 	find_euler_cycle(g, ans, start);
-	// cout << ans.size() << endl;
 	for (int i = 1; i < ans.size(); ++i) {
 		cout << ans[i - 1] << ' ' << ans[i] << '\n';
 	}
-	// for (int i = 1; i < ans.size(); ++i) {
-	// 	cout << ans[i] << ' ' << ans[i - 1] << '\n';
-	// }
-
-	return 0;
-}
-
-int main() {
-	solve();
 	return 0;
 }
