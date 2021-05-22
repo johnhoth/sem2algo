@@ -7,15 +7,13 @@ using namespace std;
 
 const int INF = 1e9 + 7;
 
-int bit(int x, int i) {
+int bit(int x, int i) { // get i_th bit of x (counts from right)
 	if (i < 0) return 0;
 	return (x & (1 << i)) != 0;
 }
 
-int main() {
 
-	int n, m;
-	cin >> n >> m;
+long long number_of_beautiful_patterns(int n, int m) {
 	if (n > m) swap(n, m);
 
 	vector <vector <int>> d(1 << n, vector <int> (1 << n));
@@ -56,8 +54,17 @@ int main() {
 		ans += a[m - 1][i];
 	}
 
-	cout << ans << endl;
-	// cout << a[m][0] << endl;
+
+	return ans;
+}
+
+
+
+int main() {
+
+	int n, m;
+	cin >> n >> m;
+	cout << number_of_beautiful_patterns(n, m) << endl;
 
 	return 0;
 }
