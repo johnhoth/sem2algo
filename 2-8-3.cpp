@@ -37,7 +37,6 @@ bool find_cycle(vector <vector <int>> &g, vector <int> &used, vector <int> &stac
 bool check_for_cycle(vector <vector <int>> &g, vector <int> &used, vector <int> &stack) {
 	for (int start = 0; start < g.size(); ++start) {
 		if (!used[start]) {
-			// cout << "start " << start << endl;
 			if (find_cycle(g, used, stack, start, start + 1)) {
 				return true;
 			}
