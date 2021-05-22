@@ -21,6 +21,16 @@ void dfs(vector <vector <int>> &g, vector <int> &tin, vector <int> &tout, int v,
 }
 
 
+void precalc_times(const vector <vector<int>> &g, vector<int> &tin, vector<int> &tout) {
+	dfs(g, tin, tout, root, -1, timer);
+}
+
+
+int check_if_bridge(const vector<vector<int>> &g, int x, int y) {
+	return static_cast<int>(tin[x] <= tin[y] && tout[y] <= tout[x]);
+}
+
+
 int main() {
 	int n, timer = 0, root = 0;
 	cin >> n;
@@ -38,27 +48,14 @@ int main() {
 		g[i].push_back(x);
 	}
 
-	dfs(g, tin, tout, root, -1, timer);
+	precalc_times(g, tin, tout);	
 	
-
-	// for (int i:tin) {
-	// 	cout << i << ' ';
-	// }
-	// cout << endl;
-
-	// for (int i:tout) {
-	// 	cout << i << ' ';
-	// }
-	// cout << endl;
-
 	int q;
 	cin >> q;
 	for (int i = 0; i < q; ++i) {
 		int x, y;
 		cin >> x >> y;
-		x--;
-		y--;
-		cout << static_cast<int>(tin[x] <= tin[y] && tout[y] <= tout[x]) << endl;
+		cout << check_if_bridge(g, x - 1, y - 1) << endl;
 	}
 
 	return 0;
