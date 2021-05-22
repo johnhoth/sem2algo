@@ -7,7 +7,7 @@ using namespace std;
 
 const int INF = 1e9 + 7;
 
-int findMSTPrim(int n, int m, vector<vector<pair<int, int>>> &g) {
+int findMSTPrim(int n, int m, const vector<vector<pair<int, int>>> &g) {
 	int res = 0;
 	vector<int> used(n, 0);
 	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
