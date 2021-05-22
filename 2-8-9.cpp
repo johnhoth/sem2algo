@@ -9,7 +9,7 @@ using namespace std;
 const int INF = 1e9 + 7;
 
 
-void dfs(vector <vector <int>> &g, vector <int> &used, vector <int> &d, vector <int> &h, int v, int p, set <int> &ans) {
+void dfs(const vector <vector <int>> &g, vector <int> &used, vector <int> &d, vector <int> &h, int v, int p, set <int> &ans) {
 	used[v] = 1;
 	d[v] = h[v] = (p == -1 ? 0 : h[p] + 1);
 	int children = 0;
@@ -33,14 +33,26 @@ void dfs(vector <vector <int>> &g, vector <int> &used, vector <int> &d, vector <
 			
 
 
-int solve() {
-	int n, m;
+int find_cutpoints(const vector <vector <int>> &g) {
+	vector <int> used(n, 0); // used[v] - visited vertex v or not
+	vector <int> d(n, 0);
+	// d[v] - minimal depth of all ->
+	// -> vertices that connected with v with reverse edge
+	vector <int> h(n, 0); // h[v] - height or depth of vertex from root
+	set <int> ans; // result set of cutpoints
+	for (int v = 0; v < n; ++v) {
+		if (!used[v]) {
+			dfs(g, used, d, h, v, -1, ans);
+		}
+	}
+	return ans;
+}
+
+int main() {
+	int n, m; // n - vertex number, m - edges number
 	cin >> n >> m;
 	vector <vector <int>> g(n, vector <int>());
-	vector <int> used(n, 0);
-	vector <int> d(n, 0);
-	vector <int> h(n, 0);
-	set <int> ans;
+	
 	for (int i = 0; i < m; ++i) {
 		int x, y;
 		cin >> x >> y;
@@ -49,21 +61,15 @@ int solve() {
 		g[x].push_back(y);
 		g[y].push_back(x);
 	}
-	for (int v = 0; v < n; ++v) {
-		if (!used[v]) {
-			dfs(g, used, d, h, v, -1, ans);
-		}
-	}
+
+	auto ans = find_cutpoints(n, m, g);
+
 	cout << ans.size() << endl;
 	for (auto i : ans) {
 		cout << i + 1 << ' ';
 	}
 	cout << endl;
 
-	return 0;
-}
 
-int main() {
-	solve();
 	return 0;
 }
